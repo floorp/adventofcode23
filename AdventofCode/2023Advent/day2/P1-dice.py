@@ -17,26 +17,21 @@ def start():
     f = open("inputraw", "r")
     for line in f.readlines():
         getgameID = line.split(":")
-        #print(re.compile(r'\d').findall(getgameID[0]))
         cleangameid = int(''.join(re.compile(r'\d').findall(getgameID[0])))
-        #print("gameid {}".format(cleangameid))
         
         passcheck[:] = []
         dicelist = getgameID[1].split(";")
-        #print(dicelist)
         for hands in dicelist:
             hands = hands.split(",")
             #print(hands)
             for dicecount in hands:
                 dicecount = ''.join(dicecount)
                 dicecount = dicecount.split(" ")
-                #print(dicecount[1])
-                #print(dicecount[2])
                 valuecheck(dicecount, cleangameid)
         
         if "fail" not in str(passcheck):
-            print(cleangameid)
-            print(str(passcheck))
+            #print(cleangameid)
+            #print(str(passcheck))
             totalscore = totalscore + cleangameid
                 
     print("final result is {}".format(totalscore))
